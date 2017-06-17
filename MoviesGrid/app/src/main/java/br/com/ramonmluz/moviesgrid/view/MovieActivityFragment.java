@@ -1,7 +1,9 @@
 package br.com.ramonmluz.moviesgrid.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -55,12 +57,22 @@ public class MovieActivityFragment extends Fragment implements MovieView  {
 
     @Override
     public void fillRecyclerView(List<Movie> movies) {
-
         moviesRcyclerView.setAdapter(new MovieRecyclerViewAdapter(movies));
     }
 
     @Override
     public void notifyError(VolleyError error) {
-        Log.e(Constants.TAG_MOVIE, error.getMessage());
+         Log.e(Constants.TAG_MOVIE, error.toString());
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("Is necessary create a key in Site: https://api.themoviedb.org");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 }

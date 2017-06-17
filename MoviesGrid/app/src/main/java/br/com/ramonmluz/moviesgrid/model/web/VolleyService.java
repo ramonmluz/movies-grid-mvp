@@ -88,7 +88,7 @@ public class VolleyService {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.d("Error.Response", error.getMessage());
+            Log.d("Error.Response", error.toString());
             mResultListner.notifyError(error);
         }
 

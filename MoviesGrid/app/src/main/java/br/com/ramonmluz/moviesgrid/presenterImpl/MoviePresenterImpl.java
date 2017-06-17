@@ -22,7 +22,6 @@ public class MoviePresenterImpl implements MoviePresenter {
 
         @Override
         public void notifySuccess(List<Movie> movies) {
-
             mView.fillRecyclerView(movies);
         }
 
